@@ -79,14 +79,14 @@ run_sql_commands() {
         echo -e "\n$(get_language_message "\e[96mDefault credentials:\e[0m" "\e[96mCredenciales por defecto:\e[0m")"
         echo -e "Username: \033[93mroot\033[0m"
         echo -e "\n$(get_language_message "Password: \033[93m[No password just hit Enter]\033[0m" "Password: \033[93m[Sin contraseña solo presiona Enter.]\033[0m")"
-        if [[ -n "${DVWA_SQL_USER}" ]]; then
+        if [[ -z "${DVWA_SQL_USER}" ]]; then
             read -p "$(get_language_message "\e[96mEnter SQL user:\e[0m " "\e[96mIngrese el usuario de SQL:\e[0m ")" sql_user
         else
             sql_user=$DVWA_SQL_USER
         fi
         # Se configura el usuario root como usuario por defecto para facilitar las instalaciones desatendidas.
         sql_user=${sql_user:-root}
-        if [[ -n "${DVWA_SQL_USER}" ]]; then
+        if [[ -z "${DVWA_SQL_USER}" ]]; then
             read -s -p "$(get_language_message "\e[96mEnter SQL password (press Enter for no password):\e[96m " "\e[96mIngrese la contraseña de SQL (presiona Enter si no hay contraseña):\e[0m ")" sql_password
         else
             sql_password=$DVWA_SQL_PASSWORD
@@ -179,7 +179,7 @@ if [ -d "/var/www/html/DVWA" ]; then
     echo -e "$warning_message"
 
     # Preguntar al usuario qué acción tomar / Ask the user what action to take
-    if [[ -n "${DVWA_KEEP_EXISTING_FOLDER}" ]]; then
+    if [[ -z "${DVWA_KEEP_EXISTING_FOLDER}" ]]; then
         read -p "$(get_language_message "\e[96mDo you want to delete the existing folder and download it again (y/n):\e[0m " "\e[96m¿Desea borrar la carpeta existente y descargarla de nuevo? (s/n):\e[0m ")" user_response
     else
         user_response="${DVWA_KEEP_EXISTING_FOLDER}"
