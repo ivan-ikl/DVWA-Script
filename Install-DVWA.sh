@@ -94,10 +94,10 @@ run_sql_commands() {
         echo
         # Verificar si las credenciales son válidas antes de ejecutar comandos SQL / Verify if credentials are valid before executing SQL commands
         if [ -n "$sql_password" ]; then
-            $test_result = $(mysql -u "$sql_user" -p"$sql_password" -e ";" &>/dev/null)
+            test_result = $(mysql -u "$sql_user" -p"$sql_password" -e ";" &>/dev/null)
             echo "TEST TEST 1"
         else
-            $test_result = $(mysql -u "$sql_user" -e ";" &>/dev/null)
+            test_result = $(mysql -u "$sql_user" -e ";" &>/dev/null)
             echo "TEST TEST 2"
         fi
         if [ ! $test_result ]; then
