@@ -61,6 +61,10 @@ This script automates the installation process for [DVWA (Damn Vulnerable Web Ap
 ## Usage / Uso 🚀
 
 Follow the on-screen instructions to install DVWA. The script will guide you through the process, including updating repositories, installing dependencies, and configuring the DVWA database.
+The script can also be run non-interactivelly if the following environment variables are set:
+- DVWA_SQL_USER - user for MySQL
+- DVWA_SQL_PASSWORD - password for MySQL
+- DVWA_KEEP_EXISTING_FOLDER - if 'y', indicates that the existing DVWA folder will be kept if it was previously downloaded, if 'n', the existing folder will be overwritten
 
 Sigue las instrucciones en pantalla para instalar DVWA. El script te guiará a través del proceso, incluyendo la actualización de repositorios, la instalación de dependencias y la configuración de la base de datos de DVWA.
 
