@@ -74,6 +74,7 @@ check_program() {
 run_sql_commands() {
     local sql_user
     local sql_password
+    local test_result
 
     while true; do
         echo -e "\n$(get_language_message "\e[96mDefault credentials:\e[0m" "\e[96mCredenciales por defecto:\e[0m")"
