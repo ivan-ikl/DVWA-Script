@@ -123,7 +123,12 @@ run_sql_commands() {
 sql_commands() {
     local sql_user="$1"
     local sql_password="$2"
-    local sql_command="mysql -u$sql_user -p$sql_password"
+    local sql_command="mysql -u$sql_user"
+    if [ -n "$sql_password" ]; then
+        sql_command+=" -p$sql_password"
+        echo "TEST TEST TEST"
+    fi
+    echo "TEST TEST PASSED"
 
     # Verificar si la base de datos ya existe
     if ! $sql_command -e "CREATE DATABASE IF NOT EXISTS dvwa;"; then
