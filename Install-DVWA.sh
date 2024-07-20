@@ -94,13 +94,13 @@ run_sql_commands() {
         echo
         # Verificar si las credenciales son válidas antes de ejecutar comandos SQL / Verify if credentials are valid before executing SQL commands
         if [ -n "$sql_password" ]; then
-            $test_result = $(! mysql -u "$sql_user" -p"$sql_password" -e ";" &>/dev/null)
+            $test_result = $(mysql -u "$sql_user" -p"$sql_password" -e ";" &>/dev/null)
             echo "TEST TEST 1"
         else
-            $test_result = $(! mysql -u "$sql_user" -e ";" &>/dev/null)
+            $test_result = $(mysql -u "$sql_user" -e ";" &>/dev/null)
             echo "TEST TEST 2"
         fi
-        if $test_result; then
+        if [ ! $test_result ]; then
             echo -e "\n$(get_language_message "\e[91mError: Invalid SQL credentials. Please check your username and password. If you are traying to use root user and blank password make sure that you are running the script as root user.\e[0m" "\e[91mError: Credenciales SQL inválidas. Por favor, compruebe su nombre de usuario y contraseña. Si usted estas intentando de utilizar el usuario root y la contraseña en blanco asegúrate de que estas ejecutando el script como usuario root.")"
             if [[ "${DVWA_SQL_USER}" ]]; then
                 # Non-interactive installation is used, exit
